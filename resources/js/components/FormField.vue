@@ -37,7 +37,7 @@ export default {
 
     mounted() {
         this.watchedComponents.forEach(component => {
-            console.log("WATCHING "+ component.fieldAttribute)
+            console.log("WATCHING " + component.fieldAttribute);
 
             let attribute = "value";
 
@@ -53,12 +53,12 @@ export default {
                             ? value.value
                             : value;
 
-                    console.log("update options with ")
-                    console.log(component.fieldAttribute)
-                    console.log(value)
+                    console.log("update options with ");
+                    console.log(component.fieldAttribute);
+                    console.log(value);
 
-                    console.log("parent values")
-                    console.log(this.parentValues)
+                    console.log("parent values");
+                    console.log(this.parentValues);
 
                     this.updateOptions();
                 },
@@ -94,16 +94,26 @@ export default {
             this.options = [];
 
             if (this.parentValue != {}) {
+                console.log(
+                    `/nova-vendor/child-select/options-new/${this.resourceName}`
+                );
+                console.log({
+                    resourceName: this.resourceName,
+                    attribute: this.field.attribute,
+                    parents: this.parentValues,
+                    multiParents: this.field.multiParents
+                });
                 Nova.request()
-                    .post(
-                        "/nova-vendor/child-select/options?resource=" +
-                            this.resourceName,
-                            {
+                    .get(
+                        `/nova-vendor/child-select/options-new/${this.resourceName}`,
+                        {
+                            params: {
                                 resourceName: this.resourceName,
                                 attribute: this.field.attribute,
                                 parents: this.parentValues,
                                 multiParents: this.field.multiParents
                             }
+                        }
                     )
                     .then(response => {
                         this.loaded = true;

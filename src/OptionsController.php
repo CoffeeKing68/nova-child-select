@@ -2,6 +2,7 @@
 
 namespace Alvinhu\ChildSelect;
 
+use App\Nova\Resource;
 use Illuminate\Routing\Controller;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
