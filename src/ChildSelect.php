@@ -17,7 +17,7 @@ class ChildSelect extends Field
         return $this;
     }
 
-    public function getOptions($parameters = [], $multiParents)
+    public function getOptions($parameters, $multiParents)
     {
         if($multiParents)
             $parameters = (object)$parameters;
